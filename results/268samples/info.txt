@@ -1,0 +1,7 @@
+All: 268 samples dataset
+
+DONALD: adam, no data augmentation
+PATOLINO: adam, data agumentation * 1
+NATCOMP2: adam, data augmentation * 4
+SNOOPY: sgd, transfer learning (no data augmentation)
+PRECISION: adam, transfer learning (no data augmentation)
