@@ -21,10 +21,11 @@ IMAGE_WIDTH=128
 IMAGE_HEIGHT=128
 IMAGE_SIZE=(IMAGE_WIDTH, IMAGE_HEIGHT)
 IMAGE_CHANNELS=3
+DATASET_PATH = "../via-dataset/images/"
 
 def load_data():
     
-    filenames = os.listdir("dataset/")
+    filenames = os.listdir(DATASET_PATH)
     categories = []
     for filename in filenames:
         category = filename.split('.')[0]
@@ -122,7 +123,7 @@ def train_test_model(train_df, test_df, model):
     
     train_generator = train_datagen.flow_from_dataframe(
         train_df, 
-        "dataset/", 
+        DATASET_PATH, 
         x_col='filename',
         y_col='category',
         target_size=IMAGE_SIZE,
@@ -133,7 +134,7 @@ def train_test_model(train_df, test_df, model):
     validation_datagen = ImageDataGenerator(rescale=1./255)
     validation_generator = validation_datagen.flow_from_dataframe(
         validate_df, 
-        "dataset/", 
+        DATASET_PATH, 
         x_col='filename',
         y_col='category',
         target_size=IMAGE_SIZE,
@@ -160,7 +161,7 @@ def train_test_model(train_df, test_df, model):
     test_datagen = ImageDataGenerator(rescale=1./255)
     test_generator = test_datagen.flow_from_dataframe(
          test_df, 
-         "dataset/", 
+         DATASET_PATH, 
          x_col='filename',
          y_col='category',
          class_mode='categorical',

@@ -14,7 +14,7 @@ import pandas as pd
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from sklearn.model_selection import train_test_split
 import os
-#print(os.listdir("dataset/"))
+#print(os.listdir("../via-dataset/images/"))
 
 FAST_RUN = False
 #IMAGE_WIDTH=128

@@ -11,7 +11,7 @@ version with evaluate function
 
 import numpy as np
 import pandas as pd 
-from keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from sklearn.model_selection import train_test_split
 import os
 #print(os.listdir("dataset/"))
@@ -21,10 +21,11 @@ IMAGE_WIDTH=128
 IMAGE_HEIGHT=128
 IMAGE_SIZE=(IMAGE_WIDTH, IMAGE_HEIGHT)
 IMAGE_CHANNELS=3
+DATASET_PATH = "../via-dataset/images/"
 
 def load_data():
     
-    filenames = os.listdir("dataset/")
+    filenames = os.listdir(DATASET_PATH)
     categories = []
     for filename in filenames:
         category = filename.split('.')[0]
@@ -43,8 +44,8 @@ def load_data():
 
 def create_model():
     
-    from keras.models import Sequential
-    from keras.layers import Conv2D, MaxPooling2D, Dropout, Flatten, Dense, BatchNormalization
+    from tensorflow.keras.models import Sequential
+    from tensorflow.keras.layers import Conv2D, MaxPooling2D, Dropout, Flatten, Dense, BatchNormalization
     
     model = Sequential()
     
@@ -78,7 +79,7 @@ def create_model():
 
 def train_test_model(df, model):
    
-    from keras.callbacks import EarlyStopping, ReduceLROnPlateau
+    from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
 
     earlystop = EarlyStopping(patience=10)
     
@@ -120,7 +121,7 @@ def train_test_model(df, model):
     
     train_generator = train_datagen.flow_from_dataframe(
         train_df, 
-        "dataset/", 
+        DATASET_PATH, 
         x_col='filename',
         y_col='category',
         target_size=IMAGE_SIZE,
@@ -131,7 +132,7 @@ def train_test_model(df, model):
     validation_datagen = ImageDataGenerator(rescale=1./255)
     validation_generator = validation_datagen.flow_from_dataframe(
         validate_df, 
-        "dataset/", 
+        DATASET_PATH, 
         x_col='filename',
         y_col='category',
         target_size=IMAGE_SIZE,
@@ -153,7 +154,7 @@ def train_test_model(df, model):
     test_datagen = ImageDataGenerator(rescale=1./255)
     test_generator = test_datagen.flow_from_dataframe(
          test_df, 
-         "dataset/", 
+         DATASET_PATH, 
          x_col='filename',
          y_col='category',
          class_mode='categorical',

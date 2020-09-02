@@ -9,15 +9,17 @@ import numpy as np
 import pandas as pd 
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import os
-#print(os.listdir("dataset/"))
+#print(os.listdir("../via-dataset/images/"))
 
 IMAGE_CHANNELS=3
 
 POOLING = 'avg' # None, 'avg', 'max'
 
+DATASET_PATH = "../via-dataset/images/"
+
 def load_data():
     
-    filenames = os.listdir("dataset/")
+    filenames = os.listdir(DATASET_PATH)
     categories = []
     for filename in filenames:
         category = filename.split('.')[0]
@@ -68,7 +70,7 @@ def extract_features(df, model, preprocessing_function, image_size):
     
     generator = datagen.flow_from_dataframe(
         df, 
-        "dataset/", 
+        DATASET_PATH, 
         x_col='filename',
         y_col='category',
         class_mode='categorical',

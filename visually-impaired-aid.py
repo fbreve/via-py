@@ -11,7 +11,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator, load_img
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import os
-print(os.listdir("./dataset/"))
+print(os.listdir("../via-dataset/images/"))
 
 FAST_RUN = False
 IMAGE_WIDTH=128
@@ -20,7 +20,7 @@ IMAGE_SIZE=(IMAGE_WIDTH, IMAGE_HEIGHT)
 IMAGE_CHANNELS=3
 
 # ajustei o path
-filenames = os.listdir("./dataset/")
+filenames = os.listdir("../via-dataset/images/")
 categories = []
 for filename in filenames:
     category = filename.split('.')[0]
@@ -104,7 +104,7 @@ train_datagen = ImageDataGenerator(
 
 train_generator = train_datagen.flow_from_dataframe(
     train_df, 
-    "./dataset/", 
+    "../via-dataset/images/", 
     x_col='filename',
     y_col='category',
     target_size=IMAGE_SIZE,
@@ -115,7 +115,7 @@ train_generator = train_datagen.flow_from_dataframe(
 validation_datagen = ImageDataGenerator(rescale=1./255)
 validation_generator = validation_datagen.flow_from_dataframe(
     validate_df, 
-    "./dataset/", 
+    "../via-dataset/images/", 
     x_col='filename',
     y_col='category',
     target_size=IMAGE_SIZE,
@@ -161,7 +161,7 @@ nb_samples = test_df.shape[0]
 test_gen = ImageDataGenerator(rescale=1./255)
 test_generator = test_gen.flow_from_dataframe(
      test_df, 
-     "./dataset/", 
+     "../via-dataset/images/", 
      x_col='filename',
      y_col=None,
      class_mode=None,
@@ -188,7 +188,7 @@ i = 1
 for index, row in sample_test.iterrows():
     filename = row['filename']
     category = row['category']
-    img = load_img("./dataset/"+filename, target_size=IMAGE_SIZE)
+    img = load_img("../via-dataset/images/"+filename, target_size=IMAGE_SIZE)
     plt.subplot(6, 3, i)
     plt.imshow(img)
     plt.xlabel(filename + '(' + "{}".format(category) + ')' )
