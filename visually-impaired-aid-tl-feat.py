@@ -3,6 +3,9 @@
 Created on Sun Jan  5 20:17:15 2020
 
 @author: fbrev
+
+Extract features from the input dataset using VGG16 and VGG19 and saves it to
+text files.
 """
 
 import numpy as np
