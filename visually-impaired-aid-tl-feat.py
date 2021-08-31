@@ -16,7 +16,7 @@ import os
 
 IMAGE_CHANNELS=3
 
-POOLING = 'avg' # None, 'avg', 'max'
+POOLING = None # None, 'avg', 'max'
 
 DATASET_PATH = "../via-dataset/images/"
 
