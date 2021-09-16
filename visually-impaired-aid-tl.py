@@ -270,7 +270,7 @@ model_type_list = ('Xception', 'VGG16', 'VGG19', 'ResNet50', 'ResNet101',
         'ResNet152','ResNet50V2', 'ResNet101V2', 'ResNet152V2', "InceptionV3",
         'InceptionResNetV2', 'MobileNet', 'DenseNet121', 'DenseNet169',
         'DenseNet201', 'NASNetMobile', 'MobileNetV2')
-         # NASNetLarge was removed because it is apparently to much for our GPU (GTX 1080 Ti)
+         # NASNetLarge was removed because it is apparently too much for our GPU (GTX 1080 Ti)
 
 # get hostname for log-files
 import socket
