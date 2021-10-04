@@ -26,7 +26,7 @@ ALT_DENSE = False # True, False
 POOLING = 'avg' # None, 'avg', 'max'
 DATA_AUG = False # True, False
 DATA_AUG_MULT = 1 # >=1
-FINE_TUN = False
+FINE_TUN = True
 OPTIMIZER = 'rmsprop' # 'rmsprop', 'adam', 'sgd', etc.
 DATASET_PATH = "../via-dataset/images/"
 
@@ -191,7 +191,7 @@ def train_test_model(train_df, test_df, model, preprocessing_function, image_siz
     if DATA_AUG==True:
         train_datagen = ImageDataGenerator(
             rotation_range=15,    
-            rescale=1./255,
+            #rescale=1./255,
             shear_range=0.1,
             zoom_range=0.2,
             horizontal_flip=True,
@@ -201,7 +201,7 @@ def train_test_model(train_df, test_df, model, preprocessing_function, image_siz
         )
     else:
         train_datagen = ImageDataGenerator(
-            rescale=1./255,
+            #rescale=1./255,
             preprocessing_function=preprocessing_function
         )
     
@@ -216,7 +216,7 @@ def train_test_model(train_df, test_df, model, preprocessing_function, image_siz
     )
     
     validation_datagen = ImageDataGenerator(
-        rescale=1./255,
+        #rescale=1./255,
         preprocessing_function=preprocessing_function
     )
     validation_generator = validation_datagen.flow_from_dataframe(
@@ -246,7 +246,7 @@ def train_test_model(train_df, test_df, model, preprocessing_function, image_siz
 
 
     test_datagen = ImageDataGenerator(
-        rescale=1./255,
+        #rescale=1./255,
         preprocessing_function=preprocessing_function
     )
     test_generator = test_datagen.flow_from_dataframe(
