@@ -12,9 +12,18 @@ transfer learning version
 import numpy as np
 import pandas as pd 
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
+import tensorflow as tf
 from sklearn.model_selection import train_test_split
 import os
+import random
 #print(os.listdir("../via-dataset/images/"))
+
+os.environ['TF_DETERMINISTIC_OPS'] = '1'
+SEED = 1980
+os.environ['PYTHONHASHSEED'] = str(SEED)
+random.seed(SEED)
+tf.random.set_seed(SEED)
+np.random.seed(SEED)
 
 FAST_RUN = False
 #IMAGE_WIDTH=128
@@ -122,6 +131,38 @@ def create_model(model_type):
         image_size = (224, 224)
         from tensorflow.keras.applications.mobilenet_v2 import MobileNetV2, preprocess_input        
         model = MobileNetV2(weights='imagenet', include_top=False, pooling=POOLING, input_shape=image_size + (IMAGE_CHANNELS,))       
+    elif model_type=='EfficientNetB0':
+        image_size = (224, 224)
+        from tensorflow.keras.applications.efficientnet import EfficientNetB0, preprocess_input
+        model = EfficientNetB0(weights='imagenet', include_top=False, pooling=POOLING, input_shape=image_size + (IMAGE_CHANNELS,))        
+    elif model_type=='EfficientNetB1':
+        image_size = (240, 240)
+        from tensorflow.keras.applications.efficientnet import EfficientNetB1, preprocess_input
+        model = EfficientNetB1(weights='imagenet', include_top=False, pooling=POOLING, input_shape=image_size + (IMAGE_CHANNELS,))        
+    elif model_type=='EfficientNetB2':
+        image_size = (260, 260)
+        from tensorflow.keras.applications.efficientnet import EfficientNetB2, preprocess_input
+        model = EfficientNetB2(weights='imagenet', include_top=False, pooling=POOLING, input_shape=image_size + (IMAGE_CHANNELS,))        
+    elif model_type=='EfficientNetB3':
+        image_size = (300, 300)
+        from tensorflow.keras.applications.efficientnet import EfficientNetB3, preprocess_input
+        model = EfficientNetB3(weights='imagenet', include_top=False, pooling=POOLING, input_shape=image_size + (IMAGE_CHANNELS,))        
+    elif model_type=='EfficientNetB4':
+        image_size = (380, 380)
+        from tensorflow.keras.applications.efficientnet import EfficientNetB4, preprocess_input
+        model = EfficientNetB4(weights='imagenet', include_top=False, pooling=POOLING, input_shape=image_size + (IMAGE_CHANNELS,))        
+    elif model_type=='EfficientNetB5':
+        image_size = (456, 456)
+        from tensorflow.keras.applications.efficientnet import EfficientNetB5, preprocess_input
+        model = EfficientNetB5(weights='imagenet', include_top=False, pooling=POOLING, input_shape=image_size + (IMAGE_CHANNELS,))        
+    elif model_type=='EfficientNetB6':
+        image_size = (528, 528)
+        from tensorflow.keras.applications.efficientnet import EfficientNetB6, preprocess_input
+        model = EfficientNetB6(weights='imagenet', include_top=False, pooling=POOLING, input_shape=image_size + (IMAGE_CHANNELS,))        
+    elif model_type=='EfficientNetB7':
+        image_size = (600, 600)
+        from tensorflow.keras.applications.efficientnet import EfficientNetB7, preprocess_input
+        model = EfficientNetB7(weights='imagenet', include_top=False, pooling=POOLING, input_shape=image_size + (IMAGE_CHANNELS,))                
 
     else: print("Error: Model not implemented.")
 
@@ -173,7 +214,8 @@ def train_test_model(train_df, test_df, model, preprocessing_function, image_siz
     train_df["category"] = train_df["category"].replace({1: 'clear', 0: 'non-clear'}) 
     test_df["category"] = test_df["category"].replace({1: 'clear', 0: 'non-clear'})        
 
-    train_df, validate_df = train_test_split(train_df, test_size=0.20)
+    train_df, validate_df = train_test_split(train_df, test_size=0.20, shuffle=True,
+                                             stratify=train_df.category, random_state=SEED)
     
     train_df = train_df.reset_index(drop=True)
     validate_df = validate_df.reset_index(drop=True)
@@ -232,7 +274,7 @@ def train_test_model(train_df, test_df, model, preprocessing_function, image_siz
     #import psutil
     
     epochs=3 if FAST_RUN else 50
-    model.fit_generator(
+    model.fit(
         train_generator, 
         epochs=epochs,
         validation_data=validation_generator,
@@ -260,16 +302,20 @@ def train_test_model(train_df, test_df, model, preprocessing_function, image_siz
          shuffle=False
     )
         
-    _, acc = model.evaluate_generator(test_generator, steps=np.ceil(total_test/batch_size))
+    _, acc = model.evaluate(test_generator, steps=np.ceil(total_test/batch_size))
 
     return acc
     
 # Main
     
-model_type_list = ('Xception', 'VGG16', 'VGG19', 'ResNet50', 'ResNet101', 
+model_type_list = ['Xception', 'VGG16', 'VGG19', 'ResNet50', 'ResNet101', 
         'ResNet152','ResNet50V2', 'ResNet101V2', 'ResNet152V2', "InceptionV3",
         'InceptionResNetV2', 'MobileNet', 'DenseNet121', 'DenseNet169',
-        'DenseNet201', 'NASNetMobile', 'MobileNetV2')
+        'DenseNet201', 'NASNetMobile', 'MobileNetV2',
+        'EfficientNetB0', 'EfficientNetB1', 'EfficientNetB2', 
+        'EfficientNetB3', 'EfficientNetB4', 'EfficientNetB5',
+        'EfficientNetB6', 'EfficientNetB7', ]
+
          # NASNetLarge was removed because it is apparently too much for our GPU (GTX 1080 Ti)
 
 # get hostname for log-files
@@ -278,7 +324,7 @@ hostname = socket.gethostname()
 
 # create filenames
 log_filename = "via-tl-" + hostname + ".log"
-csv_filename = "via-tl-res-" + hostname + ".csv"
+csv_filename = "via-tl-" + hostname + ".csv"
 
 # write log header
 with open(log_filename,"a+") as f_log:
@@ -294,10 +340,7 @@ with open(log_filename,"a+") as f_log:
     f_log.write("Optimizer: %s\n\n" %OPTIMIZER)    
    
 for model_type in model_type_list:
-    
-    # Seed to make it reproducible
-    np.random.seed(seed=1980)
-    
+       
     df = load_data()
     
     model, preprocessing_function, image_size = create_model(model_type)
@@ -309,7 +352,7 @@ for model_type in model_type_list:
     from sklearn.model_selection import RepeatedKFold
     kfold_n_splits = 10
     kfold_n_repeats = 1
-    kf = RepeatedKFold(n_splits=kfold_n_splits, n_repeats=kfold_n_repeats)
+    kf = RepeatedKFold(n_splits=kfold_n_splits, n_repeats=kfold_n_repeats, random_state=SEED)
     kf.split(df)
     
     # record model type in the log file
