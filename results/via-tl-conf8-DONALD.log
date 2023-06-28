@@ -1,0 +1,64 @@
+Machine: DONALD
+Date: 19/01/2023 Time: 23:15:49
+Config. Number: 8
+Alternative Dense Layer: False
+Pooling Application Layer: avg
+Data Augmentation: False
+Data Augmentation Multiplier: 1
+Fine Tuning: False
+Multi Optimizer: False
+Optimizer: RMSprop
+Batch Size: 16
+Restore Best Weights: False
+
+Model Type: EfficientNetB7
+Fold: 1 of 50 Acc: 85.71% Mean: 85.71% (+/- 0.00%)
+Fold: 2 of 50 Acc: 94.29% Mean: 90.00% (+/- 4.29%)
+Fold: 3 of 50 Acc: 85.29% Mean: 88.43% (+/- 4.14%)
+Fold: 4 of 50 Acc: 94.12% Mean: 89.85% (+/- 4.35%)
+Fold: 5 of 50 Acc: 88.24% Mean: 89.53% (+/- 3.95%)
+Fold: 6 of 50 Acc: 94.12% Mean: 90.29% (+/- 3.99%)
+Fold: 7 of 50 Acc: 85.29% Mean: 89.58% (+/- 4.09%)
+Fold: 8 of 50 Acc: 85.29% Mean: 89.04% (+/- 4.08%)
+Fold: 9 of 50 Acc: 88.24% Mean: 88.95% (+/- 3.85%)
+Fold: 10 of 50 Acc: 85.29% Mean: 88.59% (+/- 3.81%)
+Fold: 11 of 50 Acc: 88.57% Mean: 88.59% (+/- 3.64%)
+Fold: 12 of 50 Acc: 88.57% Mean: 88.59% (+/- 3.48%)
+Fold: 13 of 50 Acc: 91.18% Mean: 88.78% (+/- 3.42%)
+Fold: 14 of 50 Acc: 85.29% Mean: 88.54% (+/- 3.41%)
+Fold: 15 of 50 Acc: 88.24% Mean: 88.52% (+/- 3.30%)
+Fold: 16 of 50 Acc: 88.24% Mean: 88.50% (+/- 3.19%)
+Fold: 17 of 50 Acc: 88.24% Mean: 88.48% (+/- 3.10%)
+Fold: 18 of 50 Acc: 82.35% Mean: 88.14% (+/- 3.32%)
+Fold: 19 of 50 Acc: 82.35% Mean: 87.84% (+/- 3.48%)
+Fold: 20 of 50 Acc: 76.47% Mean: 87.27% (+/- 4.20%)
+Fold: 21 of 50 Acc: 85.71% Mean: 87.19% (+/- 4.11%)
+Fold: 22 of 50 Acc: 85.71% Mean: 87.13% (+/- 4.03%)
+Fold: 23 of 50 Acc: 88.24% Mean: 87.18% (+/- 3.95%)
+Fold: 24 of 50 Acc: 91.18% Mean: 87.34% (+/- 3.95%)
+Fold: 25 of 50 Acc: 94.12% Mean: 87.61% (+/- 4.09%)
+Fold: 26 of 50 Acc: 97.06% Mean: 87.98% (+/- 4.40%)
+Fold: 27 of 50 Acc: 76.47% Mean: 87.55% (+/- 4.84%)
+Fold: 28 of 50 Acc: 85.29% Mean: 87.47% (+/- 4.77%)
+Fold: 29 of 50 Acc: 82.35% Mean: 87.29% (+/- 4.78%)
+Fold: 30 of 50 Acc: 85.29% Mean: 87.23% (+/- 4.71%)
+Fold: 31 of 50 Acc: 85.71% Mean: 87.18% (+/- 4.64%)
+Fold: 32 of 50 Acc: 91.43% Mean: 87.31% (+/- 4.63%)
+Fold: 33 of 50 Acc: 85.29% Mean: 87.25% (+/- 4.57%)
+Fold: 34 of 50 Acc: 79.41% Mean: 87.02% (+/- 4.69%)
+Fold: 35 of 50 Acc: 85.29% Mean: 86.97% (+/- 4.63%)
+Fold: 36 of 50 Acc: 85.29% Mean: 86.92% (+/- 4.58%)
+Fold: 37 of 50 Acc: 82.35% Mean: 86.80% (+/- 4.58%)
+Fold: 38 of 50 Acc: 91.18% Mean: 86.92% (+/- 4.57%)
+Fold: 39 of 50 Acc: 91.18% Mean: 87.02% (+/- 4.56%)
+Fold: 40 of 50 Acc: 100.00% Mean: 87.35% (+/- 4.94%)
+Fold: 41 of 50 Acc: 82.86% Mean: 87.24% (+/- 4.93%)
+Fold: 42 of 50 Acc: 88.57% Mean: 87.27% (+/- 4.87%)
+Fold: 43 of 50 Acc: 91.18% Mean: 87.36% (+/- 4.85%)
+Fold: 44 of 50 Acc: 82.35% Mean: 87.25% (+/- 4.85%)
+Fold: 45 of 50 Acc: 97.06% Mean: 87.47% (+/- 5.01%)
+Fold: 46 of 50 Acc: 79.41% Mean: 87.29% (+/- 5.09%)
+Fold: 47 of 50 Acc: 94.12% Mean: 87.44% (+/- 5.13%)
+Fold: 48 of 50 Acc: 73.53% Mean: 87.15% (+/- 5.46%)
+Fold: 49 of 50 Acc: 91.18% Mean: 87.23% (+/- 5.43%)
+Fold: 50 of 50 Acc: 91.18% Mean: 87.31% (+/- 5.40%)
