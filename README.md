@@ -15,5 +15,7 @@ BREVE, Fabricio Aparecido. Convolutional Neural Networks and Ensembles for Visua
 DOI: 10.1007/978-3-031-36805-9_34
 
 Accepted Manuscripts:
+
 https://www.fabriciobreve.com/artigos/2020/wcci2020.pdf
+
 https://www.fabriciobreve.com/artigos/2023/iccsa2023.pdf
