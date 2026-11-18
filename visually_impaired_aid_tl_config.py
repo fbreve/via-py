@@ -27,6 +27,12 @@ class via_config():
                 'EfficientNetB6', 'EfficientNetB7', ]
                 # NASNetLarge was removed because it is apparently too much for our GPU (GTX 1080 Ti)
         
+        # The historical DONALD and PRECISION profiles did not define this
+        # attribute, although the main training script requires it.
+        # The final index in the model list is included by Python's slice
+        # because MODEL_TYPE_START is converted from 1-based to 0-based.
+        self.MODEL_TYPE_END = len(self.MODEL_TYPE_LIST)
+
         import socket
         hostname = socket.gethostname()
         
@@ -56,6 +62,13 @@ class via_config():
             self.MODEL_TYPE_END = 24
         
         else:
-            print("ERROR: There is no configuration defined for this host.")        
-            import sys
-            sys.exit()
+            # Portable fallback: process only one architecture by default.
+            # These values are not part of the published experiment profiles.
+            self.CONF_NUMBER = 0
+            self.FINE_TUN = False
+            self.MULTI_OPTIMIZER = False
+            self.OPTIMIZER = 'RMSprop'
+            self.REST_BEST_W = False
+            self.MODEL_TYPE_START = 1
+            self.MODEL_TYPE_END = 1
+            print("No host-specific VIA configuration for %s; using local defaults." % hostname)
