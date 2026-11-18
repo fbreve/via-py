@@ -47,6 +47,11 @@ class via_config():
             self.REST_BEST_W = False
         
         else:
-            print("ERROR: There is no configuration defined for this host.")        
-            import sys
-            sys.exit()
+            # Portable fallback, not an original published experiment profile.
+            self.MODEL_TYPE = 'MobileNet'
+            self.CONF = 'LOCAL'
+            self.FINE_TUN = False
+            self.MULTI_OPTIMIZER = False
+            self.OPTIMIZER = 'RMSprop'
+            self.REST_BEST_W = False
+            print("No host-specific VIA ensemble configuration for %s; using local defaults." % hostname)
