@@ -123,3 +123,15 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Local editor and operating-system temporary files
+*.swp
+*.swo
+*.tmp
+*.bak
+~$*
+.DS_Store
+Thumbs.db
+
+# Intentionally preserve scientific logs, predictions, MATLAB matrices
+# and result tables (including historical files already tracked by Git).
